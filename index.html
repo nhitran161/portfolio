@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quynh Tran | Chemical Engineer & Data Scientist</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --accent: #3498db;
+            --bg-light: #f8f9fa;
+            --text-dark: #333;
+            --text-light: #666;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+        }
+
+        /* Navigation */
+        nav {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 1rem 5%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            margin-left: 2rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--accent); }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary), #34495e);
+            color: white;
+            padding: 6rem 5% 4rem;
+            text-align: center;
+        }
+
+        .profile-img {
+            width: 170px;
+            height: 170px;
+            border-radius: 50%;
+            border: 5px solid white;
+            object-fit: cover;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            opacity: 0.95;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.2s;
+            margin: 0.5rem;
+            font-weight: 600;
+            border: 2px solid var(--accent);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid white;
+        }
+        
+        .btn-outline:hover {
+            background: white;
+            color: var(--primary);
+        }
+
+        /* Section Styling */
+        .section {
+            padding: 5rem 5%;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+            color: var(--primary);
+            font-size: 2rem;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--accent);
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+
+        /* Work Experience - Resume Style */
+        .experience-item {
+            margin-bottom: 3rem;
+            border-left: 3px solid var(--accent);
+            padding-left: 2rem;
+        }
+
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            margin-bottom: 0.5rem;
+        }
+
+        .exp-header h3 { margin: 0; color: var(--primary); font-size: 1.3rem; }
+        .exp-header .date { color: var(--accent); font-weight: 600; }
+        .exp-subheader { font-style: italic; color: #555; margin-bottom: 1rem; }
+        
+        .experience-item ul {
+            padding-left: 1.2rem;
+        }
+        
+        .experience-item li {
+            margin-bottom: 0.5rem;
+            color: #444;
+        }
+
+        /* Project Gallery */
+        .gallery-nav {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .gallery-thumb {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            aspect-ratio: 4/3;
+        }
+
+        .gallery-thumb:hover {
+            transform: scale(1.05);
+            z-index: 2;
+        }
+
+        .gallery-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 0.5rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        /* Detailed Project Cards */
+        .project-detail {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            margin-bottom: 4rem;
+            padding: 2.5rem;
+            border: 1px solid #eee;
+            scroll-margin-top: 100px;
+        }
+
+        .project-detail h3 { margin-top: 0; color: var(--primary); font-size: 1.6rem; }
+        
+        .tech-stack { margin: 1rem 0; }
+        .tech-tag {
+            background: #eef2f7;
+            color: var(--primary);
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            margin-right: 5px;
+            display: inline-block;
+            margin-bottom: 8px;
+            border: 1px solid #dee2e6;
+        }
+
+        .metrics-box {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            display: flex;
+            gap: 3rem;
+            flex-wrap: wrap;
+            justify-content: center; /* Centered Alignment */
+            text-align: center;
+        }
+
+        .metric-item strong { display: block; color: var(--accent); font-size: 1.4rem; }
+        .metric-item span { font-size: 0.9rem; color: #666; display: block; margin-top: 5px;}
+
+        /* Skills Layout */
+        .skills-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .skill-group h3 {
+            color: var(--primary);
+            border-bottom: 2px solid #eee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Certifications Layout */
+        .certs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .cert-card {
+            display: block; /* Makes the whole card clickable */
+            text-decoration: none;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-top: 4px solid var(--accent); /* Top border accent */
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+            color: var(--text-dark);
+            height: 100%;
+        }
+
+        .cert-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Education Layout */
+        .edu-container {
+            border-left: 3px solid #ddd;
+            padding-left: 2rem;
+        }
+        
+        .edu-school {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .degree-block {
+            margin-bottom: 2rem;
+        }
+
+        .degree-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--text-dark);
+        }
+
+        .degree-date {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 3rem 5%;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.8rem;
+            margin: 0 1rem;
+            transition: opacity 0.3s;
+        }
+        .social-links a:hover { opacity: 0.7; }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero { padding-top: 4rem; }
+            .metrics-box { flex-direction: column; gap: 1rem; }
+            .certs-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-brand">Quynh Tran</div>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#education">Education</a>
+            <a href="#experience">Experience</a>
+            <a href="#projects">Projects</a>
+            <a href="#skills">Skills</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <section class="hero" id="about">
+        <img src="assets/images/headshot.jpg" alt="Quynh Tran" class="profile-img" onerror="this.style.display='none'">
+        
+        <h1>Chemical Engineer & Data Scientist</h1>
+        
+        <p>
+            Hi, I'm Quynh. I bridge the gap between molecular engineering and data science. 
+            My background in Chemical Engineering gave me the discipline to understand complex physical systems, 
+            while my passion for Machine Learning allows me to optimize them. I turn raw data into 
+            process efficiency and material discovery.
+        </p>
+        
+        <div>
+            <a href="assets/Quynh_Tran_Resume.pdf" download class="btn"><i class="fas fa-download"></i> Download Resume</a>
+            <a href="https://github.com/nhitran161" target="_blank" class="btn btn-outline"><i class="fab fa-github"></i> GitHub</a>
+        </div>
+    </section>
+
+    <section id="education" class="section">
+        <h2 class="section-title">Education</h2>
+        <div class="edu-container">
+            <div class="edu-school">
+                University of California San Diego (UCSD) - Jacobs School of Engineering
+                <div style="font-size: 1rem; font-weight: 400; color: #666; margin-top: 5px;">ABET-accredited program</div>
+            </div>
+
+            <div class="degree-block">
+                <div class="degree-title">Master of Science (M.S.) in Chemical Engineering</div>
+                <div class="degree-date">Sep 2024 – June 2025</div>
+            </div>
+
+            <div class="degree-block">
+                <div class="degree-title">Bachelor of Science (B.S.) in Chemical Engineering</div>
+                <div class="degree-date">Sep 2020 – June 2024</div>
+                <div style="font-size: 0.9rem; color: #666;">Nanotechnology Specialization</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="section" style="background-color: #fcfcfc;">
+        <h2 class="section-title">Work Experience</h2>
+
+        <div class="experience-item">
+            <div class="exp-header">
+                <h3>Physics/Chemistry/Astronomy Expert</h3>
+                <span class="date">Oct 2025 – Present</span>
+            </div>
+            <div class="exp-subheader">Mercor | Remote</div>
+            <ul>
+                <li>Conduct data quality and validation reviews for 200+ STEM Olympiad case problems, correcting inaccuracies and standardizing structure to improve AI model reasoning reliability.</li>
+                <li>Collaborate cross-functionally with project leads and content teams through Airtable and Overleaf to resolve formatting issues, align on requirements, and consistently deliver accurate, high-quality outputs on time.</li>
+            </ul>
+        </div>
+
+        <div class="experience-item">
+            <div class="exp-header">
+                <h3>Quality Assurance/Quality Control (QA/QC) Wastewater Intern</h3>
+                <span class="date">June 2023 – Sep 2023</span>
+            </div>
+            <div class="exp-subheader">Cleantech Co., LTD. | Ho Chi Minh City, Vietnam</div>
+            <ul>
+                <li>Executed rigorous visual and functional inspections on 100% of architectural model components, identifying surface defects and assembly errors to reduce rework by 40%.</li>
+                <li>Implemented a standardized checklist system for final product verification, improving final assembly accuracy by 25% and ensuring compliance with client design specifications.</li>
+                <li>Collaborated with design and production teams to troubleshoot structural inconsistencies, ensuring all models met quality standards before client delivery.</li>
+            </ul>
+        </div>
+
+        <div class="experience-item">
+            <div class="exp-header">
+                <h3>Undergraduate Researcher</h3>
+                <span class="date">Fall 2021 – Spring 2022</span>
+            </div>
+            <div class="exp-subheader">AIChE Organization at UCSD | Ethanol Production Optimization</div>
+            <ul>
+                <li>Optimized ethanol production processes using renewable feedstocks as sustainable alternatives to fossil fuels.</li>
+                <li>Collaborated with teams in Malaysia and Brazil to refine experimental setups and improve data accuracy for performance evaluations.</li>
+                <li>Designed a small-scale 2G bio-ethanol fermentation prototype utilizing lignocellulosic biomass, establishing a proof-of-concept for renewable fuel production.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="projects" class="section">
+        
+        <h2 class="section-title">Major Technical Projects</h2>
+        
+        <p style="text-align: center; margin-bottom: 2rem; color: #666;"><em>Click to view details</em></p>
+        <div class="gallery-nav" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); margin-bottom: 3rem;">
+            <a href="#project-ml" class="gallery-thumb">
+                <img src="assets/images/ml_histogram.png" alt="ML Project" onerror="this.src='https://via.placeholder.com/400x300?text=ML+Materials'">
+                <div class="gallery-overlay">Material Stability ML</div>
+            </a>
+            <a href="#project-teos" class="gallery-thumb">
+                <img src="assets/images/teos_pfd.png" alt="TEOS Project" onerror="this.src='https://via.placeholder.com/400x300?text=TEOS+Distillation'">
+                <div class="gallery-overlay">TEOS Purification</div>
+            </a>
+        </div>
+
+        <div id="project-ml" class="project-detail">
+            <div style="display:flex; justify-content:space-between; flex-wrap: wrap;">
+                <h3>Material Stability & Cohesive Energy Prediction</h3>
+                <a href="https://github.com/nhitran161/Machine-Learning-for-Materials-Properties" target="_blank" class="btn btn-outline" style="color:var(--primary); border-color:#ddd; font-size:0.8rem;">View Code</a>
+            </div>
+            <div class="tech-stack">
+                <span class="tech-tag">Python (Pandas, NumPy)</span>
+                <span class="tech-tag">XGBoost</span>
+                <span class="tech-tag">Matminer</span>
+                <span class="tech-tag">Scikit-Learn</span>
+                <span class="tech-tag">Matplotlib & Seaborn</span>
+            </div>
+            <p>
+                Developed a high-performance machine learning pipeline to predict the <strong>cohesive energy per atom</strong> of materials using the MatPES r2SCAN dataset. 
+                Instead of relying on computationally expensive Density Functional Theory (DFT) calculations, I engineered a model that uses compositional and structural features to predict stability instantly.
+            </p>
+            <ul>
+                <li><strong>Feature Engineering:</strong> Utilized <code>matminer</code> to generate 90+ features including electronegativity, atomic radii, and lattice constants.</li>
+                <li><strong>Model Selection:</strong> Compared Ridge Regression, Random Forest, and Histogram-based Gradient Boosting.</li>
+                <li><strong>Analysis:</strong> Analyzed feature importance to understand which physical properties drive material stability using Matplotlib and Seaborn for visualization.</li>
+            </ul>
+            <div class="metrics-box">
+                <div class="metric-item"><strong>0.072 eV/atom</strong><span>MSE Error</span></div>
+                <div class="metric-item"><strong>88%</strong><span>Improvement over Baseline</span></div>
+                <div class="metric-item"><strong>90+</strong><span>Features Engineered</span></div>
+            </div>
+            <img src="assets/images/ml_histogram.png" style="width:100%; max-width:600px; border-radius:5px; margin-top:1rem; display:block; margin-left:auto; margin-right:auto;" onerror="this.style.display='none'">
+        </div>
+
+        <div id="project-teos" class="project-detail">
+            <h3>TEOS Purification Optimization: Batch vs. Continuous</h3>
+            <div class="tech-stack">
+                <span class="tech-tag">Aspen Plus</span>
+                <span class="tech-tag">MATLAB</span>
+                <span class="tech-tag">Process Safety Control (HAZOP)</span>
+                <span class="tech-tag">PFD & P&ID</span>
+                <span class="tech-tag">Equipment Sizing</span>
+                <span class="tech-tag">Economic Analysis</span>
+            </div>
+            <p>
+                Designed and simulated a purification process for <strong>Tetraethyl Orthosilicate (TEOS)</strong>, a critical precursor for semiconductor thin-film deposition. 
+                The project aimed to meet ultra-high purity standards demanded by EMD Electronics while maximizing economic efficiency.
+            </p>
+            <p>
+                We conducted a comparative analysis between Batch and Continuous distillation configurations. The study concluded that the <strong>Continuous Distillation</strong> process 
+                was superior due to significantly higher recovery rates and economic viability over a 10-year plant life.
+            </p>
+            <div class="metrics-box">
+                <div class="metric-item"><strong>92.2%</strong><span>Recovery (Continuous)</span></div>
+                <div class="metric-item"><strong>4x Efficiency</strong><span>Compared to Batch</span></div>
+                <div class="metric-item"><strong>$7.34 Million</strong><span>Net Present Value (NPV)</span></div>
+            </div>
+            <img src="assets/images/teos_pfd.png" style="width:100%; border-radius:5px; border:1px solid #eee;" onerror="this.src='https://via.placeholder.com/600x400?text=PFD+Diagram+Missing'">
+        </div>
+
+
+        <h2 class="section-title" style="margin-top: 6rem; border-top: 1px solid #eee; padding-top: 4rem;">Experimental Engineering Projects</h2>
+        
+        <p style="text-align: center; margin-bottom: 2rem; color: #666;"><em>Click to view details</em></p>
+        <div class="gallery-nav">
+            <a href="#project-ph" class="gallery-thumb">
+                <img src="assets/images/ph_control.png" alt="pH Control" onerror="this.src='https://via.placeholder.com/300?text=pH+Control'">
+                <div class="gallery-overlay">pH Controller Tuning</div>
+            </a>
+            <a href="#project-nano" class="gallery-thumb">
+                <img src="assets/images/nanoparticle.png" alt="Nanoparticles" onerror="this.src='https://via.placeholder.com/300?text=Liposome+Synthesis'">
+                <div class="gallery-overlay">Liposome Synthesis</div>
+            </a>
+            <a href="#project-fuel" class="gallery-thumb">
+                <img src="assets/images/fuel_cell.png" alt="Fuel Cell" onerror="this.src='https://via.placeholder.com/300?text=PEM+Fuel+Cell'">
+                <div class="gallery-overlay">PEM Fuel Cell</div>
+            </a>
+            <a href="#project-uv" class="gallery-thumb">
+                <img src="assets/images/uv_reactor.png" alt="UV Reactor" onerror="this.src='https://via.placeholder.com/300?text=UV+Reactor'">
+                <div class="gallery-overlay">Photocatalytic Reactor</div>
+            </a>
+            <a href="#project-cooling" class="gallery-thumb">
+                <img src="assets/images/cooling_tower.png" alt="Cooling Tower" onerror="this.src='https://via.placeholder.com/300?text=Cooling+Tower'">
+                <div class="gallery-overlay">Cooling Tower</div>
+            </a>
+            <a href="#project-heat" class="gallery-thumb">
+                <img src="assets/images/heat_exchanger.png" alt="Heat Exchanger" onerror="this.src='https://via.placeholder.com/300?text=Heat+Exchanger'">
+                <div class="gallery-overlay">Plate Heat Exchanger</div>
+            </a>
+        </div>
+
+        <div id="project-ph" class="project-detail">
+            <h3>Non-Linear pH Controller Tuning</h3>
+            <div class="tech-stack">
+                <span class="tech-tag">LabVIEW</span>
+                <span class="tech-tag">Process Control</span>
+                <span class="tech-tag">PID Tuning</span>
+                <span class="tech-tag">Direct Synthesis</span>
+            </div>
+            <p>
+                Engineered a non-linear pH control system for wastewater treatment applications using LabVIEW simulation.
+                Compared the efficacy of Direct Synthesis (DS) tuning against traditional Integral of Absolute Error (IAE) methods on a highly sensitive logarithmic system.
+            </p>
+            <ul>
+                <li><strong>Accomplishment:</strong> Achieved <strong>10x faster response time</strong> with zero oscillation and minimal offset by implementing Direct Synthesis tuning on a PD controller.</li>
+                <li><strong>Skills Applied:</strong> Modeled non-linear system dynamics and optimized PID parameters to stabilize pH levels within the critical buffer region.</li>
+            </ul>
+            <img src="assets/images/ph_control.png" style="width:100%; max-height:400px; object-fit:contain; margin-top:1rem; border:1px solid #eee;" onerror="this.src='https://via.placeholder.com/600x300?text=Add+LabVIEW+Image+Here'">
+        </div>
+
+        <div id="project-nano" class="project-detail">
+            <h3>Liposome Nanoparticle Synthesis</h3>
+            <div class="tech-stack">
+                <span class="tech-tag">Nanotechnology</span>
+                <span class="tech-tag">Dynamic Light Scattering (DLS)</span>
+                <span class="tech-tag">Statistical Analysis</span>
+                <span class="tech-tag">Drug Delivery</span>
+            </div>
+            <p>
+                Synthesized liposome nanoparticles for potential drug delivery applications, investigating the effects of cholesterol concentration and extrusion cycles on particle physical properties.
+            </p>
+            <ul>
+                <li><strong>Accomplishment:</strong> Optimized the synthesis process to achieve a target particle size of <strong>~100 nm</strong> with a low Polydispersity Index (PDI) by identifying 9 extrusion cycles as the critical threshold for uniformity.</li>
+                <li><strong>Skills Applied:</strong> Utilized Dynamic Light Scattering (DLS) to characterize particle size distribution and performed statistical analysis on lipid formulation stability.</li>
+            </ul>
+            <img src="assets/images/nanoparticle.png" style="width:100%; max-height:400px; object-fit:contain; margin-top:1rem; border:1px solid #eee;" onerror="this.src='https://via.placeholder.com/600x300?text=Add+DLS+Graph+Here'">
+        </div>
+
+        <div id="project-fuel" class="project-detail">
+            <h3>PEM Fuel Cell Performance Analysis</h3>
+            <div class="tech-stack">
+                <span class="tech-tag">Electrochemistry</span>
+                <span class="tech-tag">Renewable Energy</span>
+                <span class="tech-tag">Power Efficiency</span>
+                <span class="tech-tag">Data Analysis</span>
+            </div>
+            <p>
+                Characterized the performance of Proton Exchange Membrane (PEM) fuel cells to evaluate their viability for sustainable power generation. 
+                Conducted comparative testing between pure oxygen vs. air feeds and varying membrane layers.
+            </p>
+            <ul>
+                <li><strong>Accomplishment:</strong> Maximized voltage output and efficiency under high-load conditions (>4000 Ω) by validating a configuration using pure oxygen feed and double-membrane layers.</li>
+                <li><strong>Skills Applied:</strong> Generated polarization curves and power performance graphs to analyze current density vs. voltage relationships.</li>
+            </ul>
+            <img src="assets/images/fuel_cell.png" style="width:100%; max-height:400px; object-fit:contain; margin-top:1rem; border:1px solid #eee;" onerror="this.src='https://via.placeholder.com/600x300?text=Add+Polarization+Curve+Here'">
+        </div>
+
+        <div id="project-uv" class="project-detail">
+            <h3>UV Photocatalytic Degradation of Pollutants</h3>
+            <div class="tech-stack">
+                <span class="tech-tag">Reaction Kinetics</span>
+                <span class="tech-tag">UV-Vis Spectroscopy</span>
+                <span class="tech-tag">Wastewater Treatment</span>
+                <span class="tech-tag">Catalysis</span>
+            </div>
+            <p>
+                Optimized the degradation of Methylene Blue, a persistent industrial water pollutant, using a UV photocatalytic reactor augmented with Hydrogen Peroxide ($H_2O_2$).
+            </p>
+            <ul>
+                <li><strong>Accomplishment:</strong> Established <strong>first-order reaction kinetics</strong> and significantly increased degradation rates by optimizing catalyst concentration, proving scalability for industrial water treatment.</li>
+                <li><strong>Skills Applied:</strong> Calibrated spectrophotometric data to quantify absorbance and calculated rate constants to model degradation efficiency.</li>
+            </ul>
+            <img src="assets/images/uv_reactor.png" style="width:100%; max-height:400px; object-fit:contain; margin-top:1rem; border:1px solid #eee;" onerror="this.src='https://via.placeholder.com/600x300?text=Add+Kinetics+Graph+Here'">
+        </div>
+
+        <div id="project-cooling" class="project-detail">
+            <h3>Evaporative Cooling Tower Efficiency</h3>
+            <div class="tech-stack">
+                <span class="tech-tag">Thermodynamics</span>
+                <span class="tech-tag">Heat Transfer</span>
+                <span class="tech-tag">Unit Operations</span>
+                <span class="tech-tag">Process Optimization</span>
+            </div>
+            <p>
+                Analyzed the thermal performance of two evaporative cooling tower configurations to determine the optimal Liquid-to-Gas (L/G) ratios for industrial cooling applications.
+            </p>
+            <ul>
+                <li><strong>Accomplishment:</strong> Identified that larger tower configurations maximize heat transfer efficiency at low L/G ratios, while smaller towers perform optimally at high L/G ratios, providing key heuristics for plant design.</li>
+                <li><strong>Skills Applied:</strong> Calculated enthalpy driving forces and mass transfer coefficients to evaluate cooling effectiveness under varying flow conditions.</li>
+            </ul>
+            <img src="assets/images/cooling_tower.png" style="width:100%; max-height:400px; object-fit:contain; margin-top:1rem; border:1px solid #eee;" onerror="this.src='https://via.placeholder.com/600x300?text=Add+Cooling+Tower+Diagram+Here'">
+        </div>
+
+        <div id="project-heat" class="project-detail">
+            <h3>Plate Heat Exchanger Characterization</h3>
+            <div class="tech-stack">
+                <span class="tech-tag">Fluid Dynamics</span>
+                <span class="tech-tag">Heat Transfer Coefficients</span>
+                <span class="tech-tag">Regression Analysis</span>
+                <span class="tech-tag">Error Analysis</span>
+            </div>
+            <p>
+                Evaluated the convective heat transfer performance of a plate heat exchanger by manipulating fluid flow rates to derive empirical Nusselt number correlations.
+            </p>
+            <ul>
+                <li><strong>Accomplishment:</strong> Derived heat transfer coefficients ($C_1$, $C_2$) through regression analysis of Reynolds and Prandtl numbers, identifying critical temperature stability requirements for accurate system modeling.</li>
+                <li><strong>Skills Applied:</strong> Applied dimensionless analysis to characterize flow regimes and quantify heat exchange efficiency.</li>
+            </ul>
+            <img src="assets/images/heat_exchanger.png" style="width:100%; max-height:400px; object-fit:contain; margin-top:1rem; border:1px solid #eee;" onerror="this.src='https://via.placeholder.com/600x300?text=Add+Heat+Transfer+Graph+Here'">
+        </div>
+
+    </section>
+
+    <section id="skills" class="section" style="background-color: #fcfcfc;">
+        <h2 class="section-title">Skills & Certifications</h2>
+        
+        <div class="skills-container">
+            
+            <div class="skill-group">
+                <h3>Programming & Analytics</h3>
+                <div class="tech-stack">
+                    <span class="tech-tag">Python (NumPy, pandas, scikit-learn, TensorFlow, PyTorch)</span>
+                    <span class="tech-tag">MATLAB</span>
+                    <span class="tech-tag">LabVIEW</span>
+                    <span class="tech-tag">Minitab</span>
+                    <span class="tech-tag">SPC (Statistical Process Control)</span>
+                    <span class="tech-tag">Excel</span>
+                    <span class="tech-tag">Data Visualization (Tableau, matplotlib, seaborn)</span>
+                    <span class="tech-tag">SQL</span>
+                </div>
+            </div>
+
+            <div class="skill-group">
+                <h3>Process & Modeling</h3>
+                <div class="tech-stack">
+                    <span class="tech-tag">Aspen Plus</span>
+                    <span class="tech-tag">HYSYS</span>
+                    <span class="tech-tag">AutoCAD</span>
+                    <span class="tech-tag">Simulink</span>
+                    <span class="tech-tag">Process Hazard Analysis (HAZOP, PFD, P&ID)</span>
+                </div>
+            </div>
+
+        </div>
+
+        <h3 style="color:var(--primary); margin-top:2rem;">Certifications</h3>
+        <div class="certs-grid">
+            
+            <a href="https://www.credly.com/badges/11b21445-dc63-4cef-b6ca-833ccc11f36f" target="_blank" class="cert-card">
+                <div style="font-size:1.1rem; font-weight:700; color:var(--text-dark); margin-bottom:5px;">
+                    <i class="fas fa-certificate" style="color:var(--accent); margin-right:5px;"></i> 
+                    Fundamentals of Engineering (FE) - Chemical
+                </div>
+                <div style="color: var(--accent); font-weight: 600; margin-bottom:10px;">NCEES</div>
+                <p style="font-size: 0.9rem; color: #555;">
+                    Passed the NCEES exam. EIT Eligible. Demonstrated competence in chemical engineering principles and ethics.
+                </p>
+            </a>
+
+            <a href="https://coursera.org/share/33e9a5bbcc5d1c609a3d12aa5f1c7a5e" target="_blank" class="cert-card">
+                <div style="font-size:1.1rem; font-weight:700; color:var(--text-dark); margin-bottom:5px;">
+                    <i class="fas fa-robot" style="color:var(--accent); margin-right:5px;"></i> 
+                    Machine Learning Specialization
+                </div>
+                <div style="color: var(--accent); font-weight: 600; margin-bottom:10px;">DeepLearning.AI / Coursera</div>
+                <p style="font-size: 0.9rem; color: #555;">
+                    3-course series: Supervised Learning (Regression/Classification), Advanced Algorithms (Neural Networks), and Unsupervised Learning.
+                </p>
+            </a>
+
+            <a href="https://drive.google.com/file/d/1F6pu03jDLcHEHLR-49dQYZFbyrZaLl7B/view?usp=sharing" target="_blank" class="cert-card">
+                <div style="font-size:1.1rem; font-weight:700; color:var(--text-dark); margin-bottom:5px;">
+                    <i class="fas fa-chart-line" style="color:var(--accent); margin-right:5px;"></i> 
+                    Lean Six Sigma Green Belt
+                </div>
+                <div style="color: var(--accent); font-weight: 600; margin-bottom:10px;">CSSC</div>
+                <p style="font-size: 0.9rem; color: #555;">
+                    Certified in process improvement methodologies (DMAIC) and statistical analysis for quality control.
+                </p>
+            </a>
+
+        </div>
+    </section>
+
+    <footer id="contact">
+        <h2>Let's Connect</h2>
+        <p>Open to opportunities in Process Engineering, Data Science, and Materials Informatics.</p>
+        <div class="social-links" style="margin-top:2rem;">
+            <a href="mailto:nhi.qy.tran@gmail.com"><i class="fas fa-envelope"></i></a>
+            <a href="https://www.linkedin.com/in/quynh-yen-nhi-tran" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/nhitran161" target="_blank"><i class="fab fa-github"></i></a>
+        </div>
+        <p style="margin-top: 2rem; font-size: 0.9rem; opacity: 0.7;">&copy; 2025 Quynh Tran. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
